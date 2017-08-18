@@ -1,0 +1,97 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int j1=0,j2=0,j3=0;//win same lose
+    int y1=0,y2=0,y3=0;
+    int jg[3]={0,0,0};//b c j
+    int yg[3]={0,0,0};
+    while(n--){
+        char j,y;
+        cin>>j>>y;
+        if(j==y){
+            j2++;
+            y2++;
+        }
+        else if(j=='C'){
+            if(y=='J'){
+                j1++;
+                y3++;
+                jg[1]++;
+            }
+            else if(y=='B'){
+                j3++;
+                y1++;
+                yg[0]++;
+            }
+        }
+        else if(j=='J'){
+            if(y=='C'){
+                j3++;
+                y1++;
+                yg[1]++;
+            }
+            else if(y=='B'){
+                j1++;
+                y3++;
+                jg[2]++;
+            }
+        }
+        else if(j=='B'){
+            if(y=='C'){
+                j1++;
+                y3++;
+                jg[0]++;
+            }
+            else if(y=='J'){
+                j3++;
+                y1++;
+                yg[2]++;
+            }
+        }
+    }
+    char max_j='B',max_y='B';
+    int max_J=0,max_Y=0;
+    for(int i=1;i<3;i++){
+        if(jg[i]>jg[max_J]){
+            max_J=i;
+        }
+    }
+    switch (max_J) {
+        case 0:
+            max_j='B';
+            break;
+        case 1:
+            max_j='C';
+            break;
+        case 2:
+            max_j='J';
+            break;
+        default:
+            break;
+    }
+    for(int i=1;i<3;i++){
+        if(yg[i]>yg[max_Y]){
+            max_Y=i;
+        }
+    }
+    switch (max_Y) {
+        case 0:
+            max_y='B';
+            break;
+        case 1:
+            max_y='C';
+            break;
+        case 2:
+            max_y='J';
+            break;
+        default:
+            break;
+    }
+    cout<<j1<<' '<<j2<<' '<<j3<<endl;
+    cout<<y1<<' '<<y2<<' '<<y3<<endl;
+    cout<<max_j<<' '<<max_y<<endl;
+    return 0;
+}

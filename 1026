@@ -1,0 +1,15 @@
+#include <iostream>
+#define CLKTCK 100.0
+using namespace std;
+int main(){
+    long c1,c2;
+    cin>>c1>>c2;
+    int t=0.5+(double)(c2-c1)/CLKTCK;
+    int hour=t/3600;
+    t=t%3600;
+    int min=t/60;
+    t=t%60;
+    int sec=t;
+    printf("%02d:%02d:%02d\n",hour,min,sec);
+    return 0;
+}

@@ -1,0 +1,80 @@
+#include <iostream>
+#include <vector>
+ #include<iomanip>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> vec;
+    int a;
+    while(n--){
+        cin>>a;
+        vec.push_back(a);
+    }
+    double a1=0,a2=0,a3=0,a4=0,a5=0;
+    bool flag1=false,flag2=false,flag3=false,flag4=false,flag5=false;
+    for(int i=0;i<vec.size();i++){
+        if(vec[i]%5==0&&vec[i]%2==0){
+            a1+=vec[i];
+            flag1=true;
+        }
+    }
+    int count=0;
+    for(int i=0;i<vec.size();i++){
+        if(vec[i]%5==1){
+            count++;
+            flag2=true;
+            if(count%2==1)
+                a2+=vec[i];
+            else
+                a2-=vec[i];
+        }
+    }
+    for(int i=0;i<vec.size();i++){
+        if(vec[i]%5==2){
+            a3++;
+            flag3=true;
+        }
+        
+    }
+    int count2=0;
+    for(int i=0;i<vec.size();i++){
+        if(vec[i]%5==3){
+            a4+=vec[i];
+            count2++;
+            flag4=true;
+        }
+    }
+    a4/=count2;
+    for(int i=0;i<vec.size();i++){
+        if(vec[i]%5==4&&vec[i]>a5){
+            a5=vec[i];
+            flag5=true;
+        }
+    }
+    if(flag1)
+        cout<<a1<<" ";
+    else
+        cout<<"N ";
+    
+    if(flag2)
+        cout<<a2<<" ";
+    else
+        cout<<"N ";
+    
+    if(flag3)
+        cout<<a3<<" ";
+    else
+        cout<<"N ";
+    
+    if(flag4)
+        printf("%.1f ",a4);
+    else
+        cout<<"N ";
+    
+    if(flag5)
+        cout<<a5;
+    else
+        cout<<"N";
+    return 0;
+}

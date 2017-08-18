@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+#include <algorithm>
+using namespace std;
+
+struct mooncake{
+    double a,b,c;
+};
+bool cmp(mooncake a,mooncake b){
+    return a.c>b.c;
+}
+int main(){
+    int N,D;
+    cin>>N>>D;
+    vector<mooncake> aa(N);
+    for(int i=0;i<N;i++)
+        cin>>aa[i].a;
+    for(int i=0;i<N;i++)
+        cin>>aa[i].b;
+    for(int i=0;i<N;i++)
+        aa[i].c=aa[i].b/aa[i].a;
+    sort(aa.begin(), aa.end(), cmp);
+    double sum=0;
+    for(int i=0;i<N;i++){
+        if(aa[i].a<=D){
+            D-=aa[i].a;
+            sum+=aa[i].b;
+        }
+        else if(aa[i].a>D){
+            sum+=aa[i].c*D;
+            break;
+        }
+    }
+    printf("%.2f\n",sum);
+    return 0;
+}

@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+struct student{
+    int id;
+    int d;
+    int c;
+    bool operator<(const student& a)const{
+        if(d+c!=a.d+a.c)
+            return d+c>a.d+a.c;
+        else{
+            if(d!=a.d)
+                return d>a.d;
+            else
+                return id<a.id;
+        }
+    }
+};
+int main(){
+    int n,l,h,count=0;
+    student temp;
+    int temp_id,temp_d,temp_c;
+    vector<student> v1,v2,v3,v4;
+    cin>>n>>l>>h;
+    while(n--){
+        cin>>temp_id>>temp_d>>temp_c;
+        temp.id=temp_id;
+        temp.d=temp_d;
+        temp.c=temp_c;
+        if(temp.d>=l&&temp.c>=l){
+            count++;
+            if(temp.d>=h&&temp.c>=h){
+                v1.push_back(temp);
+            }
+            else if(temp.d>=h&&temp.c<=h){
+                v2.push_back(temp);
+            }
+            else if(temp.d<h&&temp.c<h&&temp.d>temp.c){
+                v3.push_back(temp);
+            }
+            else{
+                v4.push_back(temp);
+            }
+        }
+    }
+    sort(v1.begin(), v1.end());
+    sort(v2.begin(), v2.end());
+    sort(v3.begin(), v3.end());
+    sort(v4.begin(), v4.end());
+    cout<<count<<endl;
+    for(int i=0;i<v1.size();i++)
+        cout<<v1[i].id<<' '<<v1[i].d<<' '<<v1[i].c<<endl;
+    for(int i=0;i<v2.size();i++)
+        cout<<v2[i].id<<' '<<v2[i].d<<' '<<v2[i].c<<endl;
+    for(int i=0;i<v3.size();i++)
+        cout<<v3[i].id<<' '<<v3[i].d<<' '<<v3[i].c<<endl;
+    for(int i=0;i<v4.size();i++)
+        cout<<v4[i].id<<' '<<v4[i].d<<' '<<v4[i].c<<endl;
+    return 0;
+}

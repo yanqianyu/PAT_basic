@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    string A,Q;
+    int B,R=0,temp=0;
+    cin>>A>>B;
+    vector<int> Shang;
+    if(A[0]-'0'>B){
+        Shang.push_back((A[0]-'0')/B);
+    }
+    R=A[0]-'0';
+    for(int i=1;i<A.length();i++){
+        temp=R%B;
+        R=temp*10+(A[i]-'0');
+        Shang.push_back(R/B);
+    }
+    temp=R%B;
+    if(A.length()=='1'&&(A[0]-'0')<B){
+        cout<<"0 "<<A;
+    }
+    else{
+        for(int i=0;i<Shang.size();i++)
+            cout<<Shang[i];
+        cout<<" "<<temp;
+    }
+    return 0;
+}

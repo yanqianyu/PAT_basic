@@ -1,0 +1,27 @@
+#include <iostream>
+#include <sstream>
+using namespace std;
+string num2str(int i){
+    stringstream ss;
+    ss<<i;
+    return ss.str();
+}
+int main(){
+    int a,da,b,db;
+    cin>>a>>da>>b>>db;
+    string str_a=num2str(a);
+    string str_b=num2str(b);
+    int count_a=0,count_b=0;
+    for(int i=0;i<str_a.size();i++){
+        if(str_a[i]==da+48){
+            count_a=count_a*10+da;
+        }
+    }
+    for(int i=0;i<str_b.size();i++){
+        if(str_b[i]==db+48){
+            count_b=count_b*10+db;
+        }
+    }
+    cout<<count_a+count_b<<endl;
+    return 0;
+}

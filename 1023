@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main(){
+    vector<int> a(10);
+    int pos=0;
+    for(int i=0;i<10;i++)
+        cin>>a[i];
+    vector<int> t;
+    for(int i=0;i<10;i++){
+        for(int j=0;j<a[i];j++){
+            t.push_back(i);
+        }
+    }
+    sort(t.begin(), t.end());
+    if(t[0]==0){
+        while(t[pos]==0){
+            pos++;
+        }
+        cout<<t[pos];
+        for(int i=0;i<t.size();i++){
+            if(i!=pos)
+                cout<<t[i];
+        }
+    }
+    else{
+        for(int i=0;i<t.size();i++)
+            cout<<t[i];
+    }
+    return 0;
+}

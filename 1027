@@ -1,0 +1,27 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+int main(){
+    int n;
+    char c;
+    cin>>n>>c;
+    int x=sqrt((n+1)/2);
+    int h=x*2-1;
+    int res=n-2*x*x+1;
+    for(int i=0;i<x;i++){
+        for(int j=0;j<i;j++)
+            cout<<' ';
+        for(int j=0;j<2*x-1-2*i;j++)
+            cout<<c;
+        cout<<endl;
+    }
+    for(int i=1;i<x;i++){
+        for(int j=0;j<x-1-i;j++)
+            cout<<' ';
+        for(int j=0;j<2*i+1;j++)
+            cout<<c;
+        cout<<endl;
+    }
+    cout<<res<<endl;
+    return 0;
+}

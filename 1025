@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+struct node{
+    int address;
+    int data;
+    int next;
+};
+int find(vector<node> vec,int next){
+    for(int i=0;i<vec.size();i++)
+        if(vec[i].address==next)
+            return i;
+    return -1;
+}
+int main(){
+    vector<node> shu;
+    vector<node> rev;
+    int first_address;
+    int N,K;
+    cin>>first_address>>N>>K;
+    vector<node> ori(N);
+    node n[100000];
+    node tempN;
+    for(int i=0;i<N;i++){
+        cin>>tempN.address;
+        cin>>tempN.data;
+        cin>>tempN.next;
+        n[tempN.address]=tempN;
+    }
+    int next=first_address;
+    while(next!=-1){
+        shu.push_back(n[next]);
+        next=n[next].next;
+    }
+    int size=shu.size();
+    int temp=K-1;
+    while(temp<size){
+        for(int i=temp;i>temp-K;i--){
+            rev.push_back(shu[i]);
+        }
+        temp+=K;
+    }
+    
+    for(int i=temp-K+1;i<size;i++)
+        rev.push_back(shu[i]);
+    for(int i=0;i<size-1;i++){
+        rev[i].next=rev[i+1].address;
+        printf("%05d %d %05d\n",rev[i].address,rev[i].data,rev[i].next);
+    }
+    printf("%05d %d %d\n",rev[size-1].address,rev[size-1].data,-1);
+    return 0;
+}

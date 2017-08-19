@@ -1,0 +1,92 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+struct person{
+    string name;
+    vector<int> birth;
+    bool flag;
+};
+bool cmp(person a,person b){
+    if(a.birth[0]==b.birth[0]){
+        if(a.birth[1]==b.birth[1]){
+            return a.birth[2]<b.birth[2];
+        }
+        return a.birth[1]<b.birth[1];
+    }
+    return a.birth[0]<b.birth[0];
+}
+bool isLeg(person a){
+    if(a.birth[0]>2014)
+        return false;
+    if(a.birth[0]==2014){
+        if(a.birth[1]>9)
+            return false;
+        if(a.birth[1]==9){
+            if(a.birth[2]>6)
+                return false;
+            else
+                return true;
+        }
+    }
+    if(a.birth[0]<1814)
+        return false;
+    if(a.birth[0]==1814){
+        if(a.birth[1]<9)
+            return false;
+        if(a.birth[1]==9){
+            if(a.birth[2]<6)
+                return false;
+            else
+                return true;
+        }
+    }
+    return true;
+}
+
+int main(){
+    int n;
+    cin>>n;
+    string tempBirth;
+    vector<person> per;
+    
+    while(n--){
+        person p;
+        cin>>p.name;
+        cin>>tempBirth;
+        
+        int temp=0;
+        for(int i=0;i<tempBirth.size();i++){
+            if(tempBirth[i]=='/'){
+                p.birth.push_back(temp);
+                //cout<<temp<<endl;
+                temp=0;
+            }
+            else{
+                temp=temp*10+tempBirth[i]-'0';
+                //cout<<temp<<endl;
+            }
+        }
+        p.birth.push_back(temp);
+        p.flag=isLeg(p);
+        per.push_back(p);
+    }
+    sort(per.begin(),per.end(),cmp);
+    int a=0,b=0;
+    for(int i=0;i<per.size();i++){
+        if(per[i].flag==true){
+            a=i;
+            break;
+        }
+    }
+    for(int i=per.size()-1;i>=0;i--){
+        if(per[i].flag==true){
+            b=i;
+            break;
+        }
+    }
+
+    cout<<b-a+1<<' '<<per[a].name<<' '<<per[b].name<<endl;
+    
+    return 0;
+}

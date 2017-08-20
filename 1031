@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int count=0;
+    //bool flag=true;
+    vector<string> vec(n);
+    int arr[17]={7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+    char jym[11]={'1','0','X','9','8','7','6','5','4','3','2'};
+    for(int i=0;i<n;i++)
+        cin>>vec[i];
+    for(int i=0;i<n;i++){
+        int res=0;
+        bool flag=true;
+        for(int j=0;j<17;j++){
+            if(vec[i][j]>='0'&&vec[i][j]<='9')
+                res+=(vec[i][j]-'0')*arr[j];
+            else{
+                flag=false;
+                break;
+            }
+        }
+        res=res%11;
+        if(jym[res]!=vec[i][17]||flag==false){
+            cout<<vec[i]<<endl;
+            //flag=false;
+            count++;
+        }
+    }
+    if(count==0)
+        cout<<"All passed"<<endl;
+    return 0;
+}

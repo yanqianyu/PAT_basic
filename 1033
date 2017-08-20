@@ -1,0 +1,81 @@
+#include <iostream>
+
+using namespace std;
+int main(){
+    string s1,s2;
+    cin>>s1>>s2;
+    int arr[26+26+10+1+1+1+1]={0};//_ , . -
+    for(int i=0;i<s1.size();i++){
+        if(s1[i]=='+'){
+            for(int j=0;j<26;j++)
+                arr[j]=1;
+        }
+        else if(s1[i]>='A'&&s1[i]<='Z'){
+            arr[s1[i]-'A'+26]=1;
+            arr[s1[i]-'A']=1;
+        }
+        else if(s1[i]=='_'){
+            arr[62]=1;
+        }
+        else if(s1[i]==','){
+            arr[63]=1;
+        }
+        else if(s1[i]=='.'){
+            arr[64]=1;
+        }
+        else if(s1[i]=='-'){
+            arr[65]=1;
+        }
+        else if(s1[i]>='0'&&s1[i]<='9'){
+            arr[s1[i]-'0'+52]=1;
+        }
+    }
+    int count=0;
+    for(int i=0;i<s2.size();i++){
+        if(s2[i]>='0'&&s2[i]<='9'){
+            if(arr[s2[i]-'0'+52]==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+        else if(s2[i]>='A'&&s2[i]<='Z'){
+            if(arr[s2[i]-'A']==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+        else if(s2[i]>='a'&&s2[i]<='z'){
+            if(arr[s2[i]-'a'+26]==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+        else if(s2[i]=='_'){
+            if(arr[62]==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+        else if(s2[i]==','){
+            if(arr[63]==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+        else if(s2[i]=='.'){
+            if(arr[64]==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+        else if(s2[i]=='-'){
+            if(arr[65]==0){
+                cout<<s2[i];
+                count++;
+            }
+        }
+    }
+    if(count==0)
+        cout<<endl;
+    return 0;
+}

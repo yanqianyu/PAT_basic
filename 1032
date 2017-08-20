@@ -1,0 +1,27 @@
+#include <iostream>
+#include <map>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    map<int,int> m;
+    map<int,int>::iterator it;
+    while(n--){
+        int a,b;
+        cin>>a>>b;
+        it=m.find(a);
+        if(it==m.end())
+            m.insert(pair<int, int>(a,b));
+        else
+            it->second+=b;
+    }
+    int key=0,value=0;
+    for(it=m.begin();it!=m.end();it++){
+        if(it->second>value){
+            key=it->first;
+            value=it->second;
+        }
+    }
+    cout<<key<<' '<<value<<endl;
+    return 0;
+}

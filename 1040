@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+int main(){
+    string s;
+    cin>>s;
+    int length=s.length();
+    int AT=0,PAT=0,num=0;
+    while(length--){
+        if(s[length]=='T')
+            AT++;
+        else if(s[length]=='A')
+            PAT+=AT;
+        else{
+            num+=PAT;
+            //if(num>=1000000007)
+                num%=1000000007;
+        }
+    }
+    cout<<num<<endl;
+    return 0;
+}
